@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Document</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <style>
+        /* Navbar Özel Renk */
+        .navbar-custom {
+            background-color: #89A8B2; /* Özel arka plan rengi */
+            color: #FFFFFF; /* Metin rengi */
+        }
+
+        .navbar-custom .navbar-brand {
+            color: #FFFFFF; /* Marka adı rengi */
+            text-decoration: none; /* Alt çizgi kaldır */
+        }
+
+        .navbar-custom .navbar-brand:hover {
+            color: #CFE5FF; /* Hover durumunda renk değişimi */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar-custom p-3">
+        <div class="container">
+            <span class="navbar-brand"><i class="bi bi-lightning-fill"></i> XStore</span>
+        </div>
+    </div>
+
+    <!-- İçerik Alanı -->
+    <div class="container my-3">
+        @RenderBody()
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/lib/bootstrap/jquery/jquery.min.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

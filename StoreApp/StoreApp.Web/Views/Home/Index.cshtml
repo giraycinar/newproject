@@ -1,0 +1,169 @@
+@model ProductListViewModel
+
+<div class="container my-4">
+    <div class="row">
+        <!-- Kategoriler Listesi -->
+        <div class="col-md-3 custom-margin1">
+            <vc:categories-list />
+        </div>
+
+        <!-- Ürünler -->
+        <div class="col-md-9 custom-margin2">
+            @if(Model.Products.Count() == 0)
+            {
+                <p>Ürün bulunamadı.</p>
+            }
+
+            @foreach(var p in Model.Products)
+            {
+                <div class="card card-outline-secondary mb-2 p-3">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>@p.Name</h4>
+                            <p>@p.Description</p>
+                        </div>
+                        <div>
+                            <span class="badge rounded-pill custom-badge"><i class="bi bi-cash"></i> @p.Price TL</span>
+                        </div>
+                    </div>
+
+
+                    <form asp-page="/Cart" method="post">
+                        <input type="hidden" asp-for="@p.Id" name="Id">
+                        
+                     <button type="submit" class="btn btn-outline-success btn-sm pull-right" style="float:right;">
+                      <i class="bi bi-bag-check-fill"></i> Sepete Ekle
+                      </button>
+                    </form>
+
+
+
+
+                    <form asp-page="/Like" method="post">
+                      <input type="hidden" asp-for="@p.Id" name="Id">
+
+                      <button type="submit" style="margin-top: 10px; margin-right: 5px; padding: 5px 8px; border-radius: 15px;" 
+                           class="btn btn-outline-success btn-sm">
+                      <i class="bi bi-suit-heart-fill"></i>
+                      </button>
+                    </form>
+
+
+
+                </div>
+
+
+
+
+
+            }
+
+            <!-- Sayfalama -->
+            @if(Model.PageInfo.TotalPages > 1)
+            {
+                <div 
+                    page-model="@Model.PageInfo" 
+                    page-action="Index"
+                    page-class="btn"
+                    page-class-link="btn-outline-dark"
+                    page-class-active="btn-dark"
+                    class="btn-group my-2">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #F1F0E8; /* Sayfa arka plan rengini ayarlıyoruz */
+        color: #FFFFFF; /* Metin rengini beyaz yapıyoruz */
+    }
+        .custom-margin1 {
+        margin-left: -14%; 
+    }
+
+    .custom-margin2{
+        margin-left: 14%;
+    }
+
+    .btn-outline-dark {
+        color: #CFE5FF; /* Metin rengi */
+        border-color: #CFE5FF !important; /* Kenarlık rengi (Önemli) */
+        transition: background-color 2s ease, color 2s ease, border-color 2s ease; /* Geçiş efekti */
+    }
+
+    .btn-outline-dark:hover {
+        background-color: #CFE5FF; /* Hover durumunda arka plan rengi */
+        color: #000; /* Hover durumunda metin rengi */
+    }
+
+    .btn-outline-success {
+        color: #E5E1DA; /* Buton metin rengi */
+        border-color: #CFE5FF !important; /* Buton kenarlık rengi (Önemli) */
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Geçiş efekti */
+    }
+
+    .btn-outline-success:hover {
+        background-color: #51805c; /* Hover durumunda arka plan rengi */
+        color: white; /* Hover durumunda metin rengi */
+    }
+
+    .btn-dark {
+        background-color: #d3d3d3 !important; /* Buton tıklandığında gri arka plan */
+        border-color: #d3d3d3 !important; /* Tıklandığında kenarlık rengi */
+        color: #000; /* Gri buton metin rengi */
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Yavaş geçiş efekti */
+    }
+
+    .badge {
+        font-size: 1.1rem; /* Badge font büyüklüğü */
+    }
+
+    .card {
+        border-radius: 1.5rem; /* Kart köşe yuvarlama */
+    }
+
+    .navbar, .card, .btn {
+        border-color: #E5E1DA !important; /* Buton kenarları ve navbar sınırları için renk */
+    }
+
+    .navbar {
+        background-color: #89A8B2; /* Navbar arka planı */
+        color: #FFFFFF; /* Navbar metin rengi */
+    }
+
+    .navbar a {
+        color: #89A8B2; /* Navbar bağlantı renkleri */
+    }
+
+    .navbar a:hover {
+        color: #89A8B2; /* Hover durumunda navbar bağlantı rengi */
+    }
+
+    .card, .btn-outline-dark, .btn-outline-success {
+        background-color: #89A8B2 !important; /* Genel uyum için kartlar ve butonlar için arka plan */
+    }
+    .custom-badge {
+    background-color: #f78167; /* Arka plan rengi */
+    color: white; /* Metin rengi */
+}
+
+</style>
+
+<!-- Bootstrap ve JQuery Scripts -->
+<script src="/lib/bootstrap/jquery/jquery.min.js"></script>
+<script src="/lib/bootstrap/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Butona tıklandığında butonun 'btn-dark' sınıfını ekleyip diğerlerinden kaldırma
+    document.querySelectorAll('.btn-outline-dark').forEach(button => {
+        button.addEventListener('click', () => {
+            // Diğer tüm butonlardan 'btn-dark' sınıfını kaldır
+            document.querySelectorAll('.btn-outline-dark').forEach(b => b.classList.remove('btn-dark'));
+            
+            // Tıklanan butona 'btn-dark' sınıfını ekle
+            button.classList.add('btn-dark');
+        });
+    });
+</script>

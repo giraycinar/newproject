@@ -1,0 +1,109 @@
+﻿@page
+@model CartModel
+
+<h2 class="mb-3"><i class="bi bi-bag-check"></i> Alışverişe Sepeti</h2>
+@if(Model?.Cart?.Items.Count() == 0)
+{
+    <div class="alert alert-warning">Ürün eklenmedi.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>        
+            @foreach(var item in Model?.Cart?.Items ?? Enumerable.Empty<CartItem>())
+            {
+                <tr>
+                    <td>@item.Quantity</td>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price</td>
+                    <td>
+                        @((item.Quantity * item.Product.Price).ToString()) ₺
+                    </td>
+                    <td>
+                        <form method="post" asp-page-handler="Remove">
+                            <input type="hidden" name="Id" value="@item.Product.Id">
+                            <button type="submit" class="btn btn-sm btn-custom-delete"> <i class="bi bi-trash"></i> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total:</td>
+                <td>
+                    @Model?.Cart?.CalculateTotal() ₺
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+<div>
+    <a class="btn btn-custom" href="/">Alışverişe Devam Et</a>
+    <a class="btn btn-custom" asp-controller="Order" asp-action="Checkout">Siparişi Tamamla</a>
+</div>
+
+<!-- CSS İçinde Özel Stiller -->
+<style>
+    body {
+        background-color: #F1F0E8; /* Sayfa arka plan rengini ayarlıyoruz */
+        color: #000; /* Metin rengini siyah yapıyoruz */
+    }
+            .btn-custom-delete {
+    background-color: #fd8a61; /* Başlangıçta kırmızı arka plan */
+    color: white; /* Buton metni beyaz */
+    border-color: #fd8a61; /* Başlangıçta kırmızı kenarlık */
+    transition: background-color 2s, border-color 2s; /* Yumuşak geçiş efektleri */
+}
+
+        .btn-custom-delete:hover {
+    background-color: #ff4400; /* Hover durumunda koyu kırmızı arka plan */
+    color: white; /* Buton metni beyaz */
+    border-color: #ff4400; /* Hover durumunda koyu kırmızı kenarlık */
+    cursor: pointer; /* Hoverda fareyi el şeklinde gösterir */
+}
+
+
+    .table {
+        background-color: #FFFFFF; /* Sepet tablosu arka plan rengi */
+        color: #000; /* Tablo metin rengi */
+    }
+
+    .table th, .table td {
+        background-color: #F1F0E8; /* Tablo hücrelerinin arka plan rengi */
+        color: #000; /* Tablo hücrelerinin metin rengi */
+    }
+
+    .alert-warning {
+        background-color: #ffac5e; /* Uyarı mesajının arka plan rengi */
+        color: #000; /* Uyarı mesajı metin rengi */
+    }
+
+    .btn-custom {
+        background-color: #89A8B2; /* Buton arka planı */
+        color: white; /* Buton metin rengi */
+        border-color: #89A8B2; /* Buton kenarlık rengi */
+    }
+
+    .btn-custom:hover {
+        background-color: #B3C8CF; /* Hover durumunda arka plan rengi */
+        border-color: #B3C8CF; /* Hover durumunda kenarlık rengi */
+        color: white; /* Buton metin rengi */
+        transition: background-color 2s, border-color 2s; /* Yumuşak geçiş efektleri */
+
+    }
+</style>
+
+<!-- Bootstrap ve JQuery Scripts -->
+<script src="/lib/bootstrap/jquery/jquery.min.js"></script>
+<script src="/lib/bootstrap/bootstrap.bundle.min.js"></script>

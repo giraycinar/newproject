@@ -1,0 +1,43 @@
+@page 
+<div class="text-center">
+    <h2>Teşekkür Ederiz.</h2>
+    <p>#@OrderId numaralı siparişiniz oluşturuldu.</p>
+    <p>Siparişiniz en kısa sürede adresinize gönderilecektir.</p>
+    <a href="/" class="btn custom-btn">Anasayfa</a>
+</div>
+
+<style>
+    body {
+        background-color: #F1F0E8; /* Arka plan rengi */
+        color: #000; /* Metin rengini siyah yapıyoruz */
+        margin: 0;
+        padding: 0;
+    }
+
+    .text-center {
+        padding: 20px;
+    }
+
+    /* Buton özelleştirme */
+    .custom-btn {
+        background-color: #B3C8CF; /* Başlangıç rengi (gri tonları) */
+        color: white; /* Metin rengi */
+        border: none; /* Kenarlık kaldırılır */
+        padding: 10px 20px;
+        border-radius: 5px; /* Köşeleri yuvarlatma */
+        transition: background-color 2s ease, color 2s ease; /* Hover geçiş efekti */
+        text-decoration: none; /* Alt çizgiyi kaldır */
+    }
+
+    /* Hover durumu */
+    .custom-btn:hover {
+        background-color: #89A8B2; /* Hover durumunda daha koyu gri */
+        color: white; /* Metin rengi değişmez */
+        cursor: pointer; /* İşaretçi değişimi */
+    }
+</style>
+
+@functions {
+    [BindProperty(SupportsGet = true)]
+    public string? OrderId { get; set; }
+}

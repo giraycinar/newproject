@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg" style="background-color: #89A8B2;">
+    <div class="container-fluid">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+        <a class="navbar-brand" href="/" style="color: rgb(252, 252, 252);">
+    <i class="bi bi-lightning-fill"></i> XStore
+</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"  style="color: white;"><i class="bi bi-bag-heart"></i> Ürünler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/" style="color: white;"><i class="bi bi-cart-check"></i> Siparişler</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/" style="color: white;"><i class="bi bi-bookmark-plus"></i> Kategoriler</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/" style="color: white;"><i class="bi bi-chat-right"></i> Soru ve Taleplerim</a>
+                </li>
+                    <li><a class="nav-link" href="/" style="color: white;"><i class="bi bi-valentine2"></i> Kuponlarım</a>
+                </li>
+                   <li> <a class="nav-link" href="/" style="color: white;"><i class="bi bi-bookmark-heart"></i> Beğendiklerim</a>
+                </li>
+                   <li> <a class="nav-link" href="/" style="color: white;"><i class="bi bi-x-lg"></i> Çıkış Yap</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+            </form>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <vc:cart-summary />
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar, .navbar a {
+        color: white; /* Navbar ve bağlantı metinleri beyaz */
+    }
+
+    .navbar a:hover {
+        color: #000000; /* Hover durumunda metin siyah olur */
+    }
+
+    .navbar-toggler-icon {
+        filter: invert(1); /* Navbar toggler icon'unun rengini beyaz yapar */
+    }
+</style>
